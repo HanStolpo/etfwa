@@ -1,8 +1,5 @@
 require('./main.css');
 
-var component = require('./component');
-var app = document.createElement('div');
-
-document.body.appendChild(app);
-
-app.appendChild(component());
+var app = require('./App.purs');
+console.log (app)
+app.runApp()
