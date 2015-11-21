@@ -7,11 +7,13 @@ var merge = require('webpack-merge');
 var TARGET = process.env.npm_lifecycle_event;
 var ROOT_PATH = path.resolve(__dirname);
 var APP_PATH = path.resolve(ROOT_PATH, 'src');
-var BUILD_PATH = path.resolve(ROOT_PATH, 'build');
+var BUILD_PATH = path.resolve(ROOT_PATH, '../data/client');
 
 var srcsP = ['src[]=bower_components/purescript-*/src/**/*.purs', 'src[]=src/**/*.purs']
 var ffisP = ['ffi[]=bower_components/purescript-*/src/**/*.js'];
 var outputP = 'output';
+
+console.log(TARGET);
 
 var modulesDirectories = [
   'node_modules',
@@ -41,12 +43,36 @@ var common = {
   },
   resolve: { modulesDirectories: modulesDirectories , extensions: ['', '.js', '.purs'] },
   resolveLoader: { root: path.join(ROOT_PATH, 'node_modules') },
-  plugins: [
-    new HtmlwebpackPlugin({ title: 'ETFWA' })
-  ]
 };
 
-if(TARGET === 'start' || !TARGET) {
+if(TARGET === 'build' || !TARGET) {
+  module.exports = merge(common, {
+    externals: {
+      "./settings": "SettingsETFWA"
+    },
+    devtool: 'eval-source-map',
+    devServer: {
+      historyApiFallback: true,
+      hot: true,
+      inline: true,
+      progress: true,
+      // parse host and port from env so this is easy
+      // to customize
+      host: process.env.HOST,
+      port: process.env.PORT
+    },
+    plugins: [
+      new HtmlwebpackPlugin({
+        title: 'ETFWA',
+        filename: '../index.html',
+        template: 'html/index_template.html',
+        inject: true
+      })
+    ]
+  });
+}
+
+if(TARGET === 'start') {
   module.exports = merge(common, {
     devtool: 'eval-source-map',
     devServer: {
@@ -60,6 +86,7 @@ if(TARGET === 'start' || !TARGET) {
       port: process.env.PORT
     },
     plugins: [
+      new HtmlwebpackPlugin({title: 'ETFWA'}),
       new webpack.HotModuleReplacementPlugin()
     ]
   });
