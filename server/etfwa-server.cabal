@@ -27,6 +27,7 @@ library
                      , text
                      , either
                      , transformers
+                     , directory
 
 executable etfwa-server-exe
   hs-source-dirs:      app
