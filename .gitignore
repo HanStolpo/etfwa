@@ -1,3 +1,5 @@
 examples/*
 server/.stack-work
 build/*
+data/index.html
+data/client/*
