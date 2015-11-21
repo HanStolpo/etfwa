@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import           Echo
 
 main :: IO ()
-main = someFunc
+main = runApp 8085

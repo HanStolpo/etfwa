@@ -15,11 +15,18 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Lib
+  exposed-modules:     Echo
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
   build-depends:       servant-server == 0.4.*
                      , servant == 0.4.*
+                     , aeson
+                     , warp
+                     , time
+                     , wai
+                     , text
+                     , either
+                     , transformers
 
 executable etfwa-server-exe
   hs-source-dirs:      app
