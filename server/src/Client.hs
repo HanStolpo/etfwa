@@ -6,6 +6,7 @@
 
 module Client
     ( Api
+    , Settings(..)
     , server
     , runApp
     ) where
@@ -34,8 +35,9 @@ type Api = "settings.js" :> Get '[PlainText] Text
          :<|> Raw
 
 data Settings = Settings
-  { port :: Int
-  , host :: Text
+  { port      :: Int
+  , host      :: Text
+  , clientApp :: Text
   } deriving (Show)
 
 handlerToServant :: Settings -> Handler :~> EitherT ServantErr IO
@@ -50,6 +52,7 @@ settings = do
     [ "SettingsETFWA = {};"
     , "SettingsETFWA.port = " <> (T.pack . show $ port) <> ";"
     , "SettingsETFWA.host = '" <> host <> "';"
+    , "SettingsETFWA.app = '" <> clientApp <> "';"
     ]
 
 content :: Server Raw
@@ -67,4 +70,4 @@ app :: Settings -> Application
 app s = serve api (server s)
 
 runApp :: Int -> IO ()
-runApp port = run port (app Settings{port = port, host = "localhost"})
+runApp port = run port (app Settings{port = port, host = "localhost", clientApp = "CounterExample"})

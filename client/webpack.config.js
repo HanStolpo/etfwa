@@ -84,13 +84,18 @@ if(TARGET === 'start-css') {
   module.exports = merge(common_start, {entry: "./src/entry-css"});
 }
 
-if(TARGET === 'start-echo') {
-  module.exports = merge(common_start, {entry: "./src/entry-echo"});
+if(TARGET === 'start-counter') {
+  module.exports = merge(common_start, {entry: "./src/entry-routes"});
 }
 
 if(TARGET === 'start-routes') {
   module.exports = merge(common_start, {entry: "./src/entry-routes"});
 }
+
+if(TARGET === 'start-echo') {
+  module.exports = merge(common_start, {entry: "./src/entry-echo"});
+}
+
 
 if(TARGET === 'start') {
   module.exports = merge(common_start, {entry: "./src/entry"});

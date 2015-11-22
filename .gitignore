@@ -3,3 +3,4 @@ server/.stack-work
 build/*
 data/index.html
 data/client/*
+.psci_modules/*

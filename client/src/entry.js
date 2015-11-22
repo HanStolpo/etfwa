@@ -11,6 +11,11 @@ else if (settings.app === 'EchoOnly')
     var app = require('./EchoOnly.purs');
     app.runApp();
 }
+else if (settings.app === 'CounterExample')
+{
+    var app = require('./CounterExample.purs');
+    app.runApp();
+}
 else
 {
   console.error("blah");

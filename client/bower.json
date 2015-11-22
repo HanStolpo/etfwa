@@ -15,6 +15,9 @@
     "purescript-console": "^0.1.0",
     "purescript-lists": "~0.7.7",
     "purescript-halogen": "~0.5.8",
-    "purescript-routing": "~0.2.0"
+    "purescript-routing": "~0.2.0",
+    "purescript-affjax": "^0.10.0",
+    "purescript-tuples": "~0.4.0",
+    "purescript-debug": "~0.1.2"
   }
 }
