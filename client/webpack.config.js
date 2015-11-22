@@ -23,8 +23,7 @@ var modulesDirectories = [
 ];
 
 var common = {
-  //entry: APP_PATH,
-  entry: "./src/index",
+  entry: "./src/entry",
   output: {
     path: BUILD_PATH,
     filename: 'bundle.js'
@@ -51,16 +50,6 @@ if(TARGET === 'build' || !TARGET) {
       "./settings": "SettingsETFWA"
     },
     devtool: 'eval-source-map',
-    devServer: {
-      historyApiFallback: true,
-      hot: true,
-      inline: true,
-      progress: true,
-      // parse host and port from env so this is easy
-      // to customize
-      host: process.env.HOST,
-      port: process.env.PORT
-    },
     plugins: [
       new HtmlwebpackPlugin({
         title: 'ETFWA',
@@ -72,22 +61,37 @@ if(TARGET === 'build' || !TARGET) {
   });
 }
 
+var common_start = merge(common, {
+  devtool: 'eval-source-map',
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    progress: true,
+    // parse host and port from env so this is easy
+    // to customize
+    host: process.env.HOST,
+    port: process.env.PORT
+  },
+  plugins: [
+    new HtmlwebpackPlugin({title: 'ETFWA'}),
+    new webpack.HotModuleReplacementPlugin()
+  ]
+});
+
+
+if(TARGET === 'start-css') {
+  module.exports = merge(common_start, {entry: "./src/entry-css"});
+}
+
+if(TARGET === 'start-echo') {
+  module.exports = merge(common_start, {entry: "./src/entry-echo"});
+}
+
+if(TARGET === 'start-routes') {
+  module.exports = merge(common_start, {entry: "./src/entry-routes"});
+}
+
 if(TARGET === 'start') {
-  module.exports = merge(common, {
-    devtool: 'eval-source-map',
-    devServer: {
-      historyApiFallback: true,
-      hot: true,
-      inline: true,
-      progress: true,
-      // parse host and port from env so this is easy
-      // to customize
-      host: process.env.HOST,
-      port: process.env.PORT
-    },
-    plugins: [
-      new HtmlwebpackPlugin({title: 'ETFWA'}),
-      new webpack.HotModuleReplacementPlugin()
-    ]
-  });
+  module.exports = merge(common_start, {entry: "./src/entry"});
 }

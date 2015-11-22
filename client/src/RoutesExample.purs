@@ -1,4 +1,4 @@
-module App (runApp) where
+module RoutesExample (runApp) where
 
 import Prelude
 import Control.Monad.Aff (runAff, forkAff)

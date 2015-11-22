@@ -18,6 +18,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
+    "start-css": "webpack-dev-server",
+    "start-echo": "webpack-dev-server",
+    "start-routes": "webpack-dev-server",
     "build": "./node_modules/.bin/webpack",
     "clean": "rm -rf ../data/index.html && rm -rf ../data/client && rm -rf output",
     "clean-all": "rm -rf ../data/index.html && rm -rf ../data/client && rm -rf output && rm -rf bower_components && rm -rf node_modules"
