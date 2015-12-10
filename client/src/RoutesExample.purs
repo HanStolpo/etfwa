@@ -1,3 +1,4 @@
+-- Code taken from tutorial example that can be found here http://www.parsonsmatt.org/programming/2015/10/22/purescript_router.html
 module RoutesExample (runApp) where
 
 import Prelude

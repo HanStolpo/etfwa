@@ -1,3 +1,4 @@
+-- Code taken from tutorial example that can be found here https://github.com/slamdata/purescript-halogen
 module CounterExample (runApp) where
 
 import Prelude
